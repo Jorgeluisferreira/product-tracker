@@ -50,8 +50,8 @@ class RelvaScraper(ScraperStrategy):
         preco_element = soup.find('div', class_='js-price-display')  # Substitua pela classe correta do preço
         preco_original = soup.find('div', class_='js-compare-price-display')  # Substitua pela classe correta do preço
         preco = preco_element.text.strip() if preco_element else 'Preço não encontrado'
-        preco_original = preco_original.text.strip() if preco_original else 'Preço não encontrado'
+        preco_original = preco_original.text.strip() if preco_original else preco
 
         estoque = await verificar_disponibilidade()
 
-        return {"nome": nome, "preco": preco, "preco original": preco_original,"estoque": estoque}
+        return {"nome": nome, "preco": preco, "preco original": preco_original,"estoque": estoque, "url": url}
